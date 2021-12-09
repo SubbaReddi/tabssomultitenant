@@ -86,6 +86,20 @@ This sample illustrates how to implement SSO authentication for Teams Tab.
     ✔ ID Token  
     ✔ Access Token  
 14.  Navigate to the **Certificates & secrets**. In the Client secrets section, click on "+ New client secret". Add a description      (Name of the secret) for the secret and select “Never” for Expires. Click "Add". Once the client secret is created, copy its value, it need to be placed in the appsettings.json.
+15. Back under Manage, click on Manifest.
+    In the editor that appears, find the optionalClaims property in the JSON Azure AD application manifest, and replace it with the following block:
+        "optionalClaims": {
+        "idToken": [],
+        "accessToken": [
+            {
+                "name": "upn",
+                "source": null,
+                "essential": false,
+                "additionalProperties": []
+            }
+        ],
+        "saml2Token": []
+    },
 
 
 1) __*This step is specific to Teams.*__
